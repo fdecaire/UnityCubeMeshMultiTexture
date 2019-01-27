@@ -9,6 +9,7 @@ public class Main : MonoBehaviour
     void Start()
     {
         var gameObjects = new List<GameObject>();
+        var meshList = new List<Mesh>();
 
         gameObjects.Add(new GameObject());
         gameObjects.Add(new GameObject());
@@ -21,28 +22,10 @@ public class Main : MonoBehaviour
         //TODO: render at the end
 
         // mesh filter
-        var mesh = new Mesh();
-        var meshFilter =
-            (UnityEngine.MeshFilter)
-            gameObjects[0].AddComponent(typeof(MeshFilter));
-        meshFilter.mesh = mesh;
+        meshList.Add(AddMeshFilter(gameObjects[0], "ceil014"));
+        //meshList.Add(AddMeshFilter(gameObjects[1], "door13_0"));
 
-        // mesh renderer
-        var meshRenderer =
-            (UnityEngine.MeshRenderer)
-            gameObjects[0].AddComponent(typeof(MeshRenderer));
 
-        var material = new Material(Shader.Find("Specular"));
-        meshRenderer.materials = new Material[1];
-        meshRenderer.materials[0] = material;
-        
-        //Load a Texture (Assets/Resources/Textures/texture01.png)
-        var texture = Resources.Load<Texture2D>("Textures/ceil014");
-        material.mainTexture = texture;
-        
-        var texture2 = Resources.Load<Texture2D>("Textures/door13_0");
-
-        meshRenderer.material = material;
 
         float size = 1f;
         Vector3[] vertices = {
@@ -131,10 +114,34 @@ public class Main : MonoBehaviour
             new Vector2(0, 1),
         };
 
-        mesh.Clear();
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
-        mesh.uv = uvs;
-        mesh.RecalculateNormals();
+        meshList[0].Clear();
+        meshList[0].vertices = vertices;
+        meshList[0].triangles = triangles;
+        meshList[0].uv = uvs;
+        meshList[0].RecalculateNormals();
+    }
+
+    private Mesh AddMeshFilter(GameObject o, string textureName)
+    {
+        var mesh = new Mesh();
+        var meshFilter =
+            (UnityEngine.MeshFilter)
+            o.AddComponent(typeof(MeshFilter));
+        meshFilter.mesh = mesh;
+
+        // mesh renderer
+        var meshRenderer =
+            (UnityEngine.MeshRenderer)
+            o.AddComponent(typeof(MeshRenderer));
+
+        var material = new Material(Shader.Find("Specular"));
+        meshRenderer.materials = new Material[1];
+        meshRenderer.materials[0] = material;
+
+        //Load a Texture (Assets/Resources/Textures/texture01.png)
+        var texture = Resources.Load<Texture2D>($"Textures/{textureName}");
+        material.mainTexture = texture;
+
+        return mesh;
     }
 }
