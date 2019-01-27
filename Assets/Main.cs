@@ -10,11 +10,6 @@ public class Main : MonoBehaviour
     {
         var gameObjects = new List<GameObject>();
 
-        //TODO: break vertices, triangles, uvs into each mesh
-
-
-
-
         float size = 1f;
         Vector3[] vertices0 =
         {
@@ -79,8 +74,6 @@ public class Main : MonoBehaviour
             new Vector2(0, 1),
         };
 
-
-
         AddMeshFilter(gameObjects, "ceil014", vertices0, uvs0);
         AddMeshFilter(gameObjects, "door13_0", vertices1, uvs0);
         AddMeshFilter(gameObjects, "ctrl03_6", vertices2, uvs0);
@@ -111,7 +104,7 @@ public class Main : MonoBehaviour
             (UnityEngine.MeshRenderer)
             o[o.Count - 1].AddComponent(typeof(MeshRenderer));
 
-        var material = new Material(Shader.Find("Specular"));
+        var material = new Material(Shader.Find("Diffuse"));
         meshRenderer.materials = new Material[1];
         meshRenderer.materials[0] = material;
 
@@ -120,7 +113,6 @@ public class Main : MonoBehaviour
         material.mainTexture = texture;
 
         meshRenderer.material = material;
-
 
         mesh.Clear();
         mesh.vertices = vertices;
