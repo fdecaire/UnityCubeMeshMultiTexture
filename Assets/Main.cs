@@ -8,8 +8,6 @@ public class Main : MonoBehaviour
     // https://forum.unity.com/threads/creating-a-mesh-in-c.15454/
     void Start()
     {
-        var gameObjects = new List<GameObject>();
-
         float size = 1f;
         Vector3[] vertices0 =
         {
@@ -74,15 +72,15 @@ public class Main : MonoBehaviour
             new Vector2(0, 1),
         };
 
-        AddWall(gameObjects, "ceil014", vertices0, uvs0);
-        AddWall(gameObjects, "door13_0", vertices1, uvs0);
-        AddWall(gameObjects, "ctrl03_6", vertices2, uvs0);
-        AddWall(gameObjects, "rock074", vertices3, uvs0);
-        AddWall(gameObjects, "rock182", vertices4, uvs0);
-        AddWall(gameObjects, "rock217", vertices5, uvs0);
+        AddWall( "ceil014", vertices0, uvs0);
+        AddWall( "door13_0", vertices1, uvs0);
+        AddWall( "ctrl03_6", vertices2, uvs0);
+        AddWall( "rock074", vertices3, uvs0);
+        AddWall( "rock182", vertices4, uvs0);
+        AddWall( "rock217", vertices5, uvs0);
     }
 
-    private void AddWall(List<GameObject> o, string textureName, Vector3[] vertices, Vector2[] uvs)
+    private void AddWall(string textureName, Vector3[] vertices, Vector2[] uvs)
     {
         int[] triangles =
         {
@@ -90,19 +88,19 @@ public class Main : MonoBehaviour
             2, 3, 0,
         };
 
-        o.Add(new GameObject());
-        Instantiate(o[o.Count-1]);
+        var o = new GameObject();
+        Instantiate(o);
 
         var mesh = new Mesh();
         var meshFilter =
             (UnityEngine.MeshFilter)
-            o[o.Count-1].AddComponent(typeof(MeshFilter));
+            o.AddComponent(typeof(MeshFilter));
         meshFilter.mesh = mesh;
 
         // mesh renderer
         var meshRenderer =
             (UnityEngine.MeshRenderer)
-            o[o.Count - 1].AddComponent(typeof(MeshRenderer));
+            o.AddComponent(typeof(MeshRenderer));
 
         var material = new Material(Shader.Find("Diffuse"));
         meshRenderer.materials = new Material[1];
