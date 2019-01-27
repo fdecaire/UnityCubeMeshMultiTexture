@@ -125,12 +125,6 @@ public class Main : MonoBehaviour
             22, 23, 20
         };
 
-        int[] triangles0 =
-        {
-            0, 1, 2, // left
-            2, 3, 0,
-        };
-
         Vector2[] uvs =
         {
             new Vector2(0, 0),
@@ -175,16 +169,22 @@ public class Main : MonoBehaviour
 
 
 
-        AddMeshFilter(gameObjects, "ceil014", vertices0, triangles0, uvs0);
-        AddMeshFilter(gameObjects, "door13_0", vertices1, triangles0, uvs0);
-        AddMeshFilter(gameObjects, "ceil014", vertices2, triangles0, uvs0);
-        AddMeshFilter(gameObjects, "ceil014", vertices3, triangles0, uvs0);
-        AddMeshFilter(gameObjects, "ceil014", vertices4, triangles0, uvs0);
-        AddMeshFilter(gameObjects, "ceil014", vertices5, triangles0, uvs0);
+        AddMeshFilter(gameObjects, "ceil014", vertices0, uvs0);
+        AddMeshFilter(gameObjects, "door13_0", vertices1, uvs0);
+        AddMeshFilter(gameObjects, "ceil014", vertices2, uvs0);
+        AddMeshFilter(gameObjects, "ceil014", vertices3, uvs0);
+        AddMeshFilter(gameObjects, "ceil014", vertices4, uvs0);
+        AddMeshFilter(gameObjects, "ceil014", vertices5, uvs0);
     }
 
-    private void AddMeshFilter(List<GameObject> o, string textureName, Vector3[] vertices, int[] triangles, Vector2[] uvs)
+    private void AddMeshFilter(List<GameObject> o, string textureName, Vector3[] vertices, Vector2[] uvs)
     {
+        int[] triangles =
+        {
+            0, 1, 2, // left
+            2, 3, 0,
+        };
+
         o.Add(new GameObject());
         Instantiate(o[o.Count-1]);
 
