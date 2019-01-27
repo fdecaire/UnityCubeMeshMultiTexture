@@ -74,15 +74,15 @@ public class Main : MonoBehaviour
             new Vector2(0, 1),
         };
 
-        AddMeshFilter(gameObjects, "ceil014", vertices0, uvs0);
-        AddMeshFilter(gameObjects, "door13_0", vertices1, uvs0);
-        AddMeshFilter(gameObjects, "ctrl03_6", vertices2, uvs0);
-        AddMeshFilter(gameObjects, "rock074", vertices3, uvs0);
-        AddMeshFilter(gameObjects, "rock182", vertices4, uvs0);
-        AddMeshFilter(gameObjects, "rock217", vertices5, uvs0);
+        AddWall(gameObjects, "ceil014", vertices0, uvs0);
+        AddWall(gameObjects, "door13_0", vertices1, uvs0);
+        AddWall(gameObjects, "ctrl03_6", vertices2, uvs0);
+        AddWall(gameObjects, "rock074", vertices3, uvs0);
+        AddWall(gameObjects, "rock182", vertices4, uvs0);
+        AddWall(gameObjects, "rock217", vertices5, uvs0);
     }
 
-    private void AddMeshFilter(List<GameObject> o, string textureName, Vector3[] vertices, Vector2[] uvs)
+    private void AddWall(List<GameObject> o, string textureName, Vector3[] vertices, Vector2[] uvs)
     {
         int[] triangles =
         {
