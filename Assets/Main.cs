@@ -26,7 +26,6 @@ public class Main : MonoBehaviour
         //meshList.Add(AddMeshFilter(gameObjects[1], "door13_0"));
 
 
-
         float size = 1f;
         Vector3[] vertices = {
             // left
@@ -141,6 +140,8 @@ public class Main : MonoBehaviour
         //Load a Texture (Assets/Resources/Textures/texture01.png)
         var texture = Resources.Load<Texture2D>($"Textures/{textureName}");
         material.mainTexture = texture;
+
+        meshRenderer.material = material;
 
         return mesh;
     }
