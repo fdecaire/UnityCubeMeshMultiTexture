@@ -11,19 +11,13 @@ public class Main : MonoBehaviour
         var gameObjects = new List<GameObject>();
         var meshList = new List<Mesh>();
 
-        gameObjects.Add(new GameObject());
-        gameObjects.Add(new GameObject());
-
-        Instantiate(gameObjects[0]);
-        Instantiate(gameObjects[1]);
-
         //TODO: create array of meshes
         //TODO: break vertices, triangles, uvs into each mesh
         //TODO: render at the end
 
         // mesh filter
-        meshList.Add(AddMeshFilter(gameObjects[0], "ceil014"));
-        //meshList.Add(AddMeshFilter(gameObjects[1], "door13_0"));
+        meshList.Add(AddMeshFilter(gameObjects, "ceil014"));
+        meshList.Add(AddMeshFilter(gameObjects, "door13_0"));
 
 
         float size = 1f;
@@ -120,18 +114,21 @@ public class Main : MonoBehaviour
         meshList[0].RecalculateNormals();
     }
 
-    private Mesh AddMeshFilter(GameObject o, string textureName)
+    private Mesh AddMeshFilter(List<GameObject> o, string textureName)
     {
+        o.Add(new GameObject());
+        Instantiate(o[o.Count-1]);
+
         var mesh = new Mesh();
         var meshFilter =
             (UnityEngine.MeshFilter)
-            o.AddComponent(typeof(MeshFilter));
+            o[o.Count-1].AddComponent(typeof(MeshFilter));
         meshFilter.mesh = mesh;
 
         // mesh renderer
         var meshRenderer =
             (UnityEngine.MeshRenderer)
-            o.AddComponent(typeof(MeshRenderer));
+            o[o.Count - 1].AddComponent(typeof(MeshRenderer));
 
         var material = new Material(Shader.Find("Specular"));
         meshRenderer.materials = new Material[1];
